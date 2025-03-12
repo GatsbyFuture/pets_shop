@@ -1,5 +1,7 @@
-import {useRef, useState} from "react";
-import {TextInput, Text, View, ScrollView, Image, TouchableOpacity} from "react-native";
+import React, {useCallback, useMemo, useRef, useState} from "react";
+import {TextInput, Text, View, ScrollView, Image, TouchableOpacity, Button} from "react-native";
+import {GestureHandlerRootView} from "react-native-gesture-handler";
+import BottomSheet, {BottomSheetView} from "@gorhom/bottom-sheet";
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome";
 import {
     faArrowDownWideShort,
@@ -7,24 +9,40 @@ import {
     faRightToBracket,
     faSearch
 } from "@fortawesome/free-solid-svg-icons";
-// styles of main
-import {styles} from "./main.style";
-// mock data
-import {animalsData} from "../../mock_data/animals";
 
+// // styles of main
+import {styles} from "./main.style";
+// // mock data
+import {animalsData} from "../../mock_data/animals";
 
 export default function Main() {
     const [animals, setAnimals] = useState(animalsData);
-
     const searchInputRef = useRef(null);
+    const sheetRef = useRef(null);
 
+    // variables
+    const snapPoints = useMemo(() => ["25%", "50%", "75%"], []);
+
+    // searching
     const handleSearchPress = () => {
         if (searchInputRef.current) {
             searchInputRef.current.focus();
         }
     };
+    // callbacks
+    const handleSheetChange = useCallback((index) => {
+        console.log("handleSheetChange", index);
+    }, []);
+    const handleSnapPress = useCallback((index) => {
+        sheetRef.current?.snapToIndex(index);
+    }, []);
+    const handleClosePress = useCallback(() => {
+        sheetRef.current?.close();
+    }, []);
+
+    // render
     return (
-        <View style={styles.container}>
+        <GestureHandlerRootView style={styles.container}>
             {/* Top Bar Section */}
             <View style={styles.topBar}>
                 <View style={styles.topBarContainer}>
@@ -94,7 +112,7 @@ export default function Main() {
             <View style={styles.footer}>
                 <TouchableOpacity
                     style={styles.footerFilter}
-                    onPress={() => console.log("Button pressed")}
+                    onPress={() => handleSnapPress(1)}
                 >
                     <FontAwesomeIcon
                         icon={faArrowDownWideShort}
@@ -125,6 +143,21 @@ export default function Main() {
                     />
                 </TouchableOpacity>
             </View>
-        </View>
+            {/*<Button title="Snap To 90%" onPress={() => handleSnapPress(2)}/>*/}
+            {/*<Button title="Snap To 50%" onPress={() => handleSnapPress(1)}/>*/}
+            {/*<Button title="Snap To 25%" onPress={() => handleSnapPress(0)}/>*/}
+            {/*<Button title="Close" onPress={() => handleClosePress()}/>*/}
+            <BottomSheet
+                ref={sheetRef}
+                snapPoints={snapPoints}
+                enableDynamicSizing={false}
+                onChange={handleSheetChange}
+            >
+                <BottomSheetView style={styles.bottomSheet}>
+                    <Text>Awesome 🔥</Text>
+                    <Button title="Close" onPress={() => handleClosePress()}/>
+                </BottomSheetView>
+            </BottomSheet>
+        </GestureHandlerRootView>
     );
-}
+};

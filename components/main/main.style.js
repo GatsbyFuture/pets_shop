@@ -1,8 +1,15 @@
 import {StyleSheet} from "react-native";
 
 export const styles = StyleSheet.create({
+    bottomSheet: {
+        flex: 1,
+        padding: 36,
+        alignItems: "center",
+    },
+    // main container
     container: {
         flex: 1,
+        backgroundColor:"#ccc5c5"
     },
     // top bar style
     topBar: {
@@ -10,7 +17,7 @@ export const styles = StyleSheet.create({
         backgroundColor: "#f0f0f0",
         justifyContent: "center",
         borderBottomWidth: 1,
-        borderBottomColor: "#ddd",
+        borderBottomColor: "#999898",
     },
     topBarContainer: {
         flexDirection: "row",
