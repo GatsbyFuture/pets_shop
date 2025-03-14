@@ -9,10 +9,11 @@ import {
     faRightToBracket,
     faSearch
 } from "@fortawesome/free-solid-svg-icons";
-
-// // styles of main
+// filter
+import FilterBottomSheet from "../filterBottomSheet/filter";
+// styles of main
 import {styles} from "./main.style";
-// // mock data
+// mock data
 import {animalsData} from "../../mock_data/animals";
 
 export default function Main() {
@@ -21,7 +22,7 @@ export default function Main() {
     const sheetRef = useRef(null);
 
     // variables
-    const snapPoints = useMemo(() => ["25%", "50%", "75%"], []);
+    const snapPoints = useMemo(() => ["25%", "50%", "100%"], []);
 
     // searching
     const handleSearchPress = () => {
@@ -151,12 +152,15 @@ export default function Main() {
                 ref={sheetRef}
                 snapPoints={snapPoints}
                 enableDynamicSizing={false}
+                enablePanDownToClose={true} // true qiymat olsa qo'l bilan pastga surib yopib yuborsa bo'ladi
                 onChange={handleSheetChange}
+                backgroundStyle={styles.bottomSheetStyle}
             >
-                <BottomSheetView style={styles.bottomSheet}>
-                    <Text>Awesome 🔥</Text>
-                    <Button title="Close" onPress={() => handleClosePress()}/>
-                </BottomSheetView>
+                {/*<BottomSheetView style={styles.bottomSheetMain}>*/}
+                {/*    <Text style={styles.btmHeaderT}>BARCHA FILTERLAR</Text>*/}
+
+                {/*</BottomSheetView>*/}
+                <FilterBottomSheet/>
             </BottomSheet>
         </GestureHandlerRootView>
     );

@@ -1,23 +1,21 @@
 import {StyleSheet} from "react-native";
 
 export const styles = StyleSheet.create({
-    bottomSheet: {
-        flex: 1,
-        padding: 36,
-        alignItems: "center",
-    },
     // main container
     container: {
         flex: 1,
-        backgroundColor:"#ccc5c5"
+        backgroundColor: "#FBFBFB"
     },
     // top bar style
     topBar: {
         height: 50,
-        backgroundColor: "#f0f0f0",
+        backgroundColor: "#FBFBFB",
         justifyContent: "center",
-        borderBottomWidth: 1,
-        borderBottomColor: "#999898",
+        shadowColor: "#000", // Soya rangi
+        shadowOffset: {width: 0, height: 2}, // Pastga yo‘naltirilgan soya
+        shadowOpacity: 0.25, // Shaffoflik
+        shadowRadius: 3.84, // Yumshoqlik
+        elevation: 5, // Android uchun
     },
     topBarContainer: {
         flexDirection: "row",
@@ -109,9 +107,16 @@ export const styles = StyleSheet.create({
     },
     footer: {
         height: 50,
+        borderTopRightRadius: 20,
+        borderTopLeftRadius: 20,
         flexDirection: "row",
-        backgroundColor: "#f0f0f0",
+        backgroundColor: "#FBFBFB",
         justifyContent: "space-around",
+        shadowColor: "#000",
+        shadowOffset: {width: 0, height: -4},
+        shadowOpacity: 0.7, // Shaffoflik
+        shadowRadius: 6, // Yumshoqlik
+        elevation: 5, // Android uchun
     },
     footerSearchCon: {
         width: 60,
@@ -153,5 +158,24 @@ export const styles = StyleSheet.create({
         backgroundColor: "#3b5998",
         justifyContent: "center",
         alignItems: "center",
+    },
+    // bottom sheet
+    bottomSheetStyle: {
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 4,
+        },
+        shadowOpacity: 0.59,
+        shadowRadius: 2.30,
+        elevation: 24,
+    },
+    bottomSheetMain: {
+        flex: 1
+    },
+    btmHeaderT: {
+        color: "#3b5998",
+        textAlign: "center",
+        fontSize: 18,
     }
 });
