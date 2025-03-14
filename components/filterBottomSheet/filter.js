@@ -1,8 +1,7 @@
-import {useState, useMemo} from "react";
+import React, {useState, useMemo} from "react";
 import {
     Text,
     View,
-    StyleSheet,
     TouchableOpacity,
     Platform,
 } from "react-native";
@@ -13,6 +12,8 @@ import BouncyCheckbox from "react-native-bouncy-checkbox";
 import RadioGroup from "react-native-radio-buttons-group";
 // styles
 import {styles} from "./filter.style";
+import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome";
+import {faSearch} from "@fortawesome/free-solid-svg-icons";
 
 export default function FilterBottomSheet() {
     // State variables
@@ -29,7 +30,7 @@ export default function FilterBottomSheet() {
             label: "Pullik e'lonlar",
             value: "payment",
             color: "#3b5998",
-            size: 24
+            size: 24,
         },
         {
             id: "2",
@@ -59,6 +60,10 @@ export default function FilterBottomSheet() {
     const onPaymentPress = (selectedButtons) => {
         console.log("payment : ", selectedButtons);
         setPayment(selectedButtons);
+    };
+
+    const handleConfirmPress = () => {
+        console.log("Confirm Press");
     };
 
     return (
@@ -164,7 +169,7 @@ export default function FilterBottomSheet() {
                             fillColor="#3b5998" // Tanlanganda rang
                             unFillColor="#f9f9f9" // Tanlanmagan holatda rang
                             text="Erkak"
-                            textStyle={{fontSize: 16, justifyContent: "center", alignItems: "center"}}
+                            textStyle={{fontSize: 15, justifyContent: "center", alignItems: "center", color: "black"}}
                             iconStyle={{borderColor: "#3b5998"}} // Chegara rangi
                             innerIconStyle={{borderWidth: 2}} // Ichki chegara qalinligi
                             onPress={() => toggleGender("male")}
@@ -176,7 +181,7 @@ export default function FilterBottomSheet() {
                             fillColor="#ff69b4" // Ayollar uchun boshqa rang (pushti)
                             unFillColor="#f9f9f9"
                             text="Urg'ochi"
-                            textStyle={{fontSize: 16, justifyContent: "center", alignItems: "center"}}
+                            textStyle={{fontSize: 15, justifyContent: "center", alignItems: "center", color: "black"}}
                             iconStyle={{borderColor: "#ff69b4"}}
                             innerIconStyle={{borderWidth: 2}}
                             onPress={() => toggleGender("female")}
@@ -194,8 +199,17 @@ export default function FilterBottomSheet() {
                         onPress={onPaymentPress}
                         selectedId={payment}
                         containerStyle={styles.radio}
+                        labelStyle={styles.radioLabel}
                     />
                 </View>
+            </View>
+            <View style={styles.confirm}>
+                <TouchableOpacity
+                    style={styles.confirmButton}
+                    onPress={handleConfirmPress}
+                >
+                    <Text style={styles.confirmBtnText}>Tasdiqlash</Text>
+                </TouchableOpacity>
             </View>
         </BottomSheetView>
     );

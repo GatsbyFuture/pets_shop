@@ -22,7 +22,7 @@ export default function Main() {
     const sheetRef = useRef(null);
 
     // variables
-    const snapPoints = useMemo(() => ["25%", "50%", "100%"], []);
+    const snapPoints = useMemo(() => ["65%", "65%"], []);
 
     // searching
     const handleSearchPress = () => {
@@ -144,10 +144,6 @@ export default function Main() {
                     />
                 </TouchableOpacity>
             </View>
-            {/*<Button title="Snap To 90%" onPress={() => handleSnapPress(2)}/>*/}
-            {/*<Button title="Snap To 50%" onPress={() => handleSnapPress(1)}/>*/}
-            {/*<Button title="Snap To 25%" onPress={() => handleSnapPress(0)}/>*/}
-            {/*<Button title="Close" onPress={() => handleClosePress()}/>*/}
             <BottomSheet
                 ref={sheetRef}
                 snapPoints={snapPoints}

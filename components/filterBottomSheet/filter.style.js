@@ -76,6 +76,29 @@ const styles = StyleSheet.create({
     // radio button
     radio: {
         alignItems: "flex-start",
+    },
+    radioLabel: {
+        fontSize: 15,
+        color: "#333",
+        marginLeft: 8,
+    },
+    // confirm button
+    confirm: {
+        width: "100%",
+    },
+    confirmButton: {
+        width: "100%",
+        height: 45,
+        borderRadius: 5,
+        borderWidth: 1,
+        borderColor: "#ddd",
+        backgroundColor: "#3b5998",
+        justifyContent: "center",
+        alignItems: "center",
+    },
+    confirmBtnText: {
+        fontSize: 15,
+        color: "#fff"
     }
 });
 
