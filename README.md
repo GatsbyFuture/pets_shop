@@ -1,2 +1,2 @@
 # pets_shop
-who wanted to buy or bring any type of pets that app is right choice.
+who wanted to buy or sell any type of pets this mobile app is right choice.
